@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import HeaderMain from '../../components/HeaderMain/HeaderMain'
+
 const Home = () => {
   return (
     <div>
-      <h1>Page Home</h1>
-      <Link to="/post">
-        <button>Add new Post</button>
-      </Link>
-
+      <HeaderMain />
     </div>
   )
 }

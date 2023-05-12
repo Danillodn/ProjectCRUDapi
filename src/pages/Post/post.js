@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Header from '../../components/Header/Header'
+
 const Post = () => {
   return (
     <div>
-      <h1>Page Post</h1>
-      <Link to="/">
-        <button>Back to page Feed</button> 
-      </Link>
+      <Header />
     </div>
   )
 }

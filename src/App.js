@@ -2,10 +2,10 @@ import React from "react"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-import Edit from "./pages/edit"
-import Home from "./pages/home"
-import Post from "./pages/post"
-import Readmore from "./pages/readmore"
+import Edit from "./pages/Edit/edit"
+import Home from "./pages/Home/home"
+import Post from "./pages/Post/post"
+import Readmore from "./pages/Readmore/readmore"
 
 
 

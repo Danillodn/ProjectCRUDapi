@@ -17,7 +17,7 @@ const Home = () => {
           <div className='card'>
             <header>
               <h2>Consumindo API</h2>
-              <img src={More} />
+              <img src={More} alt=''/>
             </header>
             <div className='line'></div>
             <p>Aqui eu vou falar sobre o conteudo</p>

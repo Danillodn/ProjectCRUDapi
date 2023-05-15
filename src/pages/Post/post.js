@@ -1,10 +1,12 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom'
 import * as yup from "yup";
+import axios from 'axios';
+
 import Header from '../../components/Header/Header'
 import '../Post/post.css'
-
 
 const validationPost = yup.object().shape({
   title: yup.string().required("Title is required").max(40, "The title must have a maximum of 40 characters."),
@@ -14,10 +16,20 @@ const validationPost = yup.object().shape({
 
 const Post = () => {
 
+  let navigate = useNavigate()
+  navigate('/')
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationPost)
   })
-  const addPost = data => console.log(data)
+  const addPost = data => axios.post("https://dull-dog-gloves.cyclic.app/create_post", data)
+    .then(() => {
+      console.log("Added with sucess")
+    })
+    .catch(() => {
+      console.log("ERROR!!!")
+    })
+
   return (
     <div>
       <Header />
@@ -29,12 +41,12 @@ const Post = () => {
           <form onSubmit={handleSubmit(addPost)}>
             <div className='fields'>
               <label>Title</label>
-              <input type='text' name="title" {...register("title")}/>
+              <input type='text' name="title" {...register("title")} />
               <p className='error-message'>{errors.title?.message}</p>
             </div>
             <div className='fields'>
               <label>Description</label>
-              <input type='text' name="description" {...register("description")}/>
+              <input type='text' name="description" {...register("description")} />
               <p className='error-message'>{errors.description?.message}</p>
             </div>
             <div className='fields'>

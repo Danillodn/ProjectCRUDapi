@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../../components/Header/Header'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 
 
 const Readmore = () => {
+ 
+
+  const [ readmore, setReadmore ] = useState({})
+
+  const { id } = useParams()
+
+  useEffect(() => {
+      axios.get(`https://dull-dog-gloves.cyclic.app/show_post/${id}`)
+      .then((response) => {
+          setReadmore(response.data.post)
+      })
+      .catch((response) => {
+        console.log("ERROR")
+      })
+  },)
+ 
+ 
   return (
     <div>
       <Header/>
@@ -12,10 +31,10 @@ const Readmore = () => {
         <div className='cards'>
           <div className='card'>
             <header>
-              <h2>Consumindo API</h2>
+              <h2>{readmore.title}</h2>
             </header>
             <div className='line'></div>
-            <p>Aqui eu vou falar sobre o conteudo, Aqui eu vou falar sobre o conteudo, Aqui eu vou falar sobre o conteudo</p>
+            <p>{readmore.content}</p>
           </div>
         </div>
       </main>

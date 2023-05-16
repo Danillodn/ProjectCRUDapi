@@ -20,6 +20,12 @@ const Home = () => {
       })
   }, [])
 
+
+  const deletePost = (id) => {
+    axios.delete(`https://dull-dog-gloves.cyclic.app/delete_post/${id}`)
+    setPosts(posts.filter(post => post._id !== id))
+  }
+
   return (
     <div>
       <HeaderMain />
@@ -36,13 +42,15 @@ const Home = () => {
                 <p>{post.description}</p>
                 <div className='btns'>
                   <div className='btn-edit'>
-                    <Link to="/edit"><button>Edit</button></Link>
+                    <Link to={{ pathname: `/edit/${post._id}` }}>
+                      <button>Edit</button></Link>
                   </div>
                   <div className='btn-readmore'>
-                    <Link to="/readmore"><button>Read More</button></Link>
+                    <Link to={{ pathname: `/readmore/${post._id}`}}>
+                      <button>Read More</button></Link>
                   </div>
                   <div className='btn-delete'>
-                    <button>Delete</button>
+                    <button onClick={() => deletePost(post._id)}>Delete</button>
                   </div>
                 </div>
               </div>

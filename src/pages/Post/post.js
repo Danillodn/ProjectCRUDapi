@@ -1,9 +1,9 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
-import * as yup from "yup";
-import axios from 'axios';
+import * as yup from "yup"
+import axios from 'axios'
 
 import Header from '../../components/Header/Header'
 import '../Post/post.css'

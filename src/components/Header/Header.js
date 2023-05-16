@@ -9,7 +9,7 @@ const Header = () => {
         <header>
             <div className='container'>
                     <Link to="/">
-                        <img src={Back} style={{width: '50px'}} />
+                        <img src={Back} alt='' style={{width: '50px'}} />
                     </Link>
             </div>
         </header>

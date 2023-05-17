@@ -8,9 +8,9 @@ const Header = () => {
     return (
         <header>
             <div className='container'>
-                    <Link to="/">
-                        <img src={Back} alt='' style={{width: '50px'}} />
-                    </Link>
+                <Link to="/">
+                    <img src={Back} alt='' style={{ width: '50px' }} />
+                </Link>
             </div>
         </header>
     )

@@ -17,12 +17,12 @@ const validationPost = yup.object().shape({
 const Post = () => {
 
   let navigate = useNavigate()
-  
+
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validationPost)
   })
-  
+
   const addPost = data => axios.post("https://dull-dog-gloves.cyclic.app/create_post", data)
     .then(() => {
       console.log("Added with sucess")

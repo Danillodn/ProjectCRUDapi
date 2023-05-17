@@ -18,32 +18,26 @@ const Edit = () => {
   const { id } = useParams()
 
   let navigate = useNavigate()
- 
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(validationPost)
   })
 
-  const addPost = data => axios.put(`https://dull-dog-gloves.cyclic.app/update_post/${id}`, data)
+  const editPost = data => axios.put(`https://dull-dog-gloves.cyclic.app/update_post/${id}`, data)
     .then(() => {
       console.log("Added with sucess")
       navigate('/')
     })
     .catch(() => {
       console.log("ERROR!!!")
-      console.log(data)
-      navigate('/')
-      console.log(id)
     })
-    
-
 
   useEffect(() => {
     axios.get(`https://dull-dog-gloves.cyclic.app/show_post/${id}`)
-    .then((response) => {
+      .then((response) => {
         reset(response.data.post)
       })
-  }, [])
-
+  }, [id, reset])
 
   return (
     <div>
@@ -53,7 +47,7 @@ const Edit = () => {
           <h1>Criar postagem</h1>
           <div className='line-post'></div>
           <div className='card-body-post'></div>
-          <form onSubmit={handleSubmit(addPost)}>
+          <form onSubmit={handleSubmit(editPost)}>
             <div className='fields'>
               <label>Title</label>
               <input type='text' name="title" {...register("title")} />

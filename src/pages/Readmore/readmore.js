@@ -6,27 +6,26 @@ import axios from 'axios'
 
 
 const Readmore = () => {
- 
 
-  const [ readmore, setReadmore ] = useState({})
+
+  const [readmore, setReadmore] = useState({})
 
   const { id } = useParams()
 
   useEffect(() => {
-      axios.get(`https://dull-dog-gloves.cyclic.app/show_post/${id}`)
+    axios.get(`https://dull-dog-gloves.cyclic.app/show_post/${id}`)
       .then((response) => {
-          setReadmore(response.data.post)
+        setReadmore(response.data.post)
       })
-      .catch((response) => {
+      .catch(() => {
         console.log("ERROR")
       })
   },)
- 
- 
+
+
   return (
     <div>
-      <Header/>
-
+      <Header />
       <main>
         <div className='cards'>
           <div className='card'>

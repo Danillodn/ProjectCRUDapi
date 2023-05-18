@@ -41,3 +41,34 @@ header {
     transition: 0.2s;
     background-color: #538af0;
 }
+
+
+/*Responsividade*/
+@media (max-width: 1250px) {
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        max-width: 1000px;
+        margin: 0 auto;
+    
+        height: 100px;
+    }
+
+}
+@media (max-width: 600px) {
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        max-width: 350px;
+        margin: 0 auto;
+    
+        height: 100px;
+    }
+
+}

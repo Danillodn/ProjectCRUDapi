@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import HeaderMain from '../../components/HeaderMain/HeaderMain';
+import More from '../../images/more.svg';
+import '../Home/home.css';
+import { getPosts, deletePosts } from '../../redux/HomePosts/homeActions';
 
-import HeaderMain from '../../components/HeaderMain/HeaderMain'
-import More from '../../images/more.svg'
-import '../Home/home.css'
+const HomePosts = () => {
 
-const Home = () => {
-
-  const [posts, setPosts] = useState([])
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts);
 
   useEffect(() => {
-    axios.get("https://dull-dog-gloves.cyclic.app/list_posts")
-      .then((response) => {
-        setPosts(response.data.posts)
-      })
-      .catch(() => {
-        console.log("ERROR!!!")
-      })
-  }, [])
+    dispatch(getPosts());
+  }, [dispatch]);
 
   const deletePost = (id) => {
-    axios.delete(`https://dull-dog-gloves.cyclic.app/delete_post/${id}`)
-    setPosts(posts.filter(post => post._id !== id))
-  }
+    dispatch(deletePosts(id));
+  };
 
   return (
     <div>
@@ -42,23 +36,26 @@ const Home = () => {
                 <div className='btns'>
                   <div className='btn-edit'>
                     <Link to={{ pathname: `/edit/${post._id}` }}>
-                      <button>Edit</button></Link>
+                      <button>Edit</button>
+                    </Link>
                   </div>
                   <div className='btn-readmore'>
                     <Link to={{ pathname: `/readmore/${post._id}` }}>
-                      <button>Read More</button></Link>
+                      <button>Read More</button>
+                    </Link>
                   </div>
                   <div className='btn-delete'>
                     <button onClick={() => deletePost(post._id)}>Delete</button>
                   </div>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+ export default HomePosts; 
+

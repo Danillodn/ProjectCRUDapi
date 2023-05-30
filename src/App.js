@@ -7,9 +7,6 @@ import Home from "./pages/Home/home"
 import Post from "./pages/Post/post"
 import Readmore from "./pages/Readmore/readmore"
 
-
-
-
 function App() {
   return (
     <Router>

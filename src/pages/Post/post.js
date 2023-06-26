@@ -23,7 +23,7 @@ const Post = () => {
     resolver: yupResolver(validationPost)
   })
 
-  const addPost = data => axios.post("https://dull-dog-gloves.cyclic.app/create_post", data)
+  const addPost = data => axios.post("https://dark-sunbonnet-mite.cyclic.app/create_post", data)
     .then(() => {
       console.log("Added with sucess")
       navigate('/')

@@ -23,7 +23,7 @@ const Edit = () => {
     resolver: yupResolver(validationPost)
   })
 
-  const editPost = data => axios.put(`https://dull-dog-gloves.cyclic.app/update_post/${id}`, data)
+  const editPost = data => axios.put(`https://dark-sunbonnet-mite.cyclic.app/update_post/${id}`, data)
     .then(() => {
       console.log("Added with sucess")
       navigate('/')
@@ -33,7 +33,7 @@ const Edit = () => {
     })
 
   useEffect(() => {
-    axios.get(`https://dull-dog-gloves.cyclic.app/show_post/${id}`)
+    axios.get(`https://dark-sunbonnet-mite.cyclic.app/show_post/${id}`)
       .then((response) => {
         reset(response.data.post)
       })

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [],
+  post: {},
 };
 
 const readSlice = createSlice({
@@ -9,7 +10,7 @@ const readSlice = createSlice({
   initialState,
   reducers: {
     showPosts: (state, action) => {
-      state.posts = action.payload;
+      state.post = action.payload;
     },
   },
 });

@@ -1,36 +1,29 @@
-import React from 'react'
-import { useForm } from "react-hook-form"
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useNavigate } from 'react-router-dom'
-import * as yup from "yup"
-import axios from 'axios'
-
-import Header from '../../components/Header/Header'
-import '../Post/post.css'
+import React from 'react';
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
+import * as yup from "yup";
+import { addPosts } from '../../redux/AddPosts/addActions';
+import { useDispatch } from 'react-redux';
+import Header from '../../components/Header/Header';
+import '../Post/post.css';
 
 const validationPost = yup.object().shape({
   title: yup.string().required("Title is required").max(40, "The title must have a maximum of 40 characters."),
   description: yup.string().required("Description is required").max(150, "The description must have a maximum of 150 characters."),
   content: yup.string().required("Content is required").max(500, "The content must have a maximum of 500 characters.")
-})
+});
 
 const Post = () => {
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationPost) });
 
-
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(validationPost)
-  })
-
-  const addPost = data => axios.post("https://dark-sunbonnet-mite.cyclic.app/create_post", data)
-    .then(() => {
-      console.log("Added with sucess")
-      navigate('/')
-    })
-    .catch(() => {
-      console.log("ERROR!!!")
-    })
+  const addPost = (data) => {
+    dispatch(addPosts(data));
+    navigate('/');
+  };
 
   return (
     <div>
@@ -63,7 +56,7 @@ const Post = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
